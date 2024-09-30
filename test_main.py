@@ -64,7 +64,7 @@ class Bot:
         #last value will represent the final pnl
         final_pnl=self.close['pnl'].iloc[-1]
 
-        return 'final pnl:{:.2f}'.format(final_pnl)
+        return self.close['pnl']
     
 
     def bh_plot(self):
@@ -180,6 +180,13 @@ class Bot:
         plt.show()
 
         return test_predict,data
+    
+    def dummy_df(self):
+        df=self.read_full()
+        df.set_index(df['Date'])
+        filtered_data = df[(df['Date'] >= '2016-09-23') & (df['Date'] <= '2018-10-01')]
+        filtered_data.set_index('Date', inplace=True)
+        return filtered_data
 
         
 
